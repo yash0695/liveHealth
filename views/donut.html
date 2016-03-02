@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Morris.js Line</title>
+</head>
+
+
+
+
+
+<body onLoad="drawChart()">
+<script src="../public/jsp/raphael-min.js"></script>
+<script src="../public/jsp/jquery-1.8.2.min.js"></script>
+<script src="../public/jsp/morris.min.js"></script>
+<div id="blah_1"></div>
+<script>
+    function drawChart(){
+        var jsonData = $.getJSON("../output.json",function(json){
+            new Morris.Bar({
+                element:'blah_1',
+                data:json,
+                xkey:'sex',
+                ykeys:['age'],
+                labels:['VALUE']
+            });
+        });
+    }
+</script>
+</body>
+</html>

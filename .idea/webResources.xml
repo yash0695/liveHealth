@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebResourcesPaths">
+    <contentEntries>
+      <entry url="file://$PROJECT_DIR$">
+        <entryData>
+          <resourceRoots>
+            <path value="file://$PROJECT_DIR$/public" />
+            <path value="file://$PROJECT_DIR$/public/js" />
+            <path value="file://$PROJECT_DIR$/public/jsp" />
+            <path value="file://$PROJECT_DIR$/public/css" />
+            <path value="file://$PROJECT_DIR$/public/font-awesome" />
+            <path value="file://$PROJECT_DIR$/public/font-awesome/css" />
+          </resourceRoots>
+        </entryData>
+      </entry>
+    </contentEntries>
+  </component>
+</project>

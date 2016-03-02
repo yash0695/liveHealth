@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <script type="text/javascript" src="/public/jsp/raphael-min.js"></script>
+
+    <script type="text/javascript" src="/public/jsp/jquery.js"></script>
+    <script type="text/javascript" src="/public/jsp/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/public/jsp/morris.min.js"></script>
+
+    <!--this is the script which provides for the smooth scrolls for every click event in the navbar-->
+    <script>
+$(document).ready(function(){
+  // Add scrollspy to <body>
+  $('body').scrollspy({target: ".navbar", offset: 50});
+
+  // Add smooth scrolling on all links inside the navbar
+  $("#myNavbar a").on('click', function(event) {
+
+    // Prevent default anchor click behavior
+    event.preventDefault();
+
+    // Store hash
+    var hash = this.hash;
+
+    // Using jQuery's animate() method to add smooth page scroll
+    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top
+    }, 800, function(){
+
+      // Add hash (#) to URL when done scrolling (default click behavior)
+      window.location.hash = hash;
+    });
+  });
+});
+</script>
+    <style>
+        body {
+        position: relative;
+        }
+        <!--here affix is used to match the top menu bar(navbar) with the section the user is currently using-->
+        .affix {
+        top:0;
+        width: 100%;
+        z-index: 9999 !important;
+        }
+        .navbar {
+        margin-bottom: 0px;
+        }
+
+        .affix ~ .container-fluid {
+        position: relative;
+        top: 50px;
+        }
+        #section1 {padding-top:50px;height:500px;color: #fff; background-color: #add8e6;}
+        #section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
+        #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+        #section41 {padding-top:50px;height:500px;color: #fff; background-color: #c9e2b3;}
+        #section42 {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<div class="container-fluid" style="background-color:#F44336;color:#fff;height:350px;">
+    <div class="jumbotron">
+        <h1>HealthCare Analytics</h1>
+        <p>The best blood will at some time get into a fool or a mosquito.
+        <li>--Benito Mussolini</li></p>
+    </div>
+</div>
+
+<nav class="navbar navbar-fixed-top navbar-inverse" data-offset-top="0" style="width: 100%" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">LiveHealth</a>
+        </div>
+        <div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#section1">Markers</a></li>
+                    <li><a href="#section2">Information</a></li>
+                    <li><a href="#section3">Regional Trends</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Analytical Patterns<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#section41" onclick="loadDoc()">Age</a></li>
+                            <li><a href="#section42">Sex</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div id="section1" class="container-fluid">
+    <h1>Markers</h1>
+    <h3>Data to be Added for Dengue Markers</h3>
+    <div class="container">
+        <h2>The Basic Marker Info....</h2>
+        <!--for every marker add a button and load the specific info dynamically
+        The nested buttons are used for loading and serving the data dynamically.
+        ??do we keep the images static?-->
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">Marker1</button>
+            <button type="button" class="btn btn-primary">Marker2</button>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Marker3<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Symptoms</a></li>
+                    <li><a href="#">Tests</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="section2" class="container-fluid">
+    <h1>Information</h1>
+    <p>On click the info should be served to the client</p>
+    <div class="container">
+        <h2>Navigation Buttons</h2>
+        <ul class="pager">
+            <li><a href="#">Previous</a></li>
+            <li><a href="#">Next</a></li>
+        </ul>
+    </div>
+</div>
+<div id="section3" class="container-fluid">
+    <h1>Regional Trends</h1>
+    <p>This section needs the charts of the respective regions and the respective data represented in the contextual class as used below </p>
+    <div class="container">
+        <h2>Regional Data</h2>
+        <!--<p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>-->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="success">
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@example.com</td>
+            </tr>
+            <tr class="danger">
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@example.com</td>
+            </tr>
+            <tr class="info">
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@example.com</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="section41" class="container-fluid">
+    <!--Check the Other New_Try file for well sizes and alert boxes-->
+        <!--<div class="col-sm-12">-->
+            <!--<h3><marquee><i>Age vs Sex trends</marquee></h3>-->
+        <!--</div>-->
+
+    <hr>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div id="bar-example" style="height: 250px;"></div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div id="line-example" style="height: 250px;"></div>
+        </div>
+    </div>
+    <script>
+
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    var obj = xhttp.response;
+                    localStorage.setItem('age_sex',obj);
+                    //document.getElementById("btn1").disabled=true;
+                    new Morris.Bar({
+                        element:'bar-example',
+                        data:JSON.parse(localStorage.getItem('age_sex')),
+                        xkey: 'ageGroup',
+                        ykeys: ['maleCount','femaleCount'],
+                        parseTime:false,
+                        labels: ['Male Count','Female Count']
+                    });
+                    new Morris.Line({
+                        element:'line-example',
+                        data:JSON.parse(localStorage.getItem('age_sex')),
+                        xkey: 'ageGroup',
+                        ykeys: ['maleCount','femaleCount'],
+                        parseTime:false,
+                        labels: ['Male Count','Female Count']
+                    });
+
+                }
+            };
+            xhttp.open("GET", "http://192.168.2.126:3703/trial", true); //ip may change of server..
+            xhttp.send();
+
+        }
+    </script>
+
+
+
+
+
+</div>
+<div id="section42" class="container-fluid">
+    <h1>Temp</h1>
+
+</div>
+
+</body>
+</html>

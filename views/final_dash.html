@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <script src="/public/jsp/d3.min.js"></script>
+    <script src="/public/jsp/nv.d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="/public/jsp/jquery.js"></script>
+    <script src="/public/jsp/bootstrap.min.js"></script>
+    <title>Charts</title>
+    <script src="/public/jsp/raphael-min.js"></script>
+    <script src="/public/jsp/morris.min.js"></script>
+    <!--nvd3 scripts-->
+    <script src="/public/jsp/d3.min.js"></script>
+    <script src="/public/jsp/nv.d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/css/nv.d3.min.css">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/public/css/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <script src="/public/jsp/raphael-min.js"></script>
+    <script src="/public/jsp/jquery-1.8.2.min.js"></script>
+    <script src="/public/jsp/morris.min.js"></script>
+    <link href="/public/css/morris.css" rel="stylesheet">
+    <!--Map-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/public/jsp/jquery.easing.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/public/jsp/bootstrap.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <!-- Custom Fonts -->
+    <link href="/public/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+    <title>Location</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+
+    <style>
+        #map-container { height: 380px }
+        #map-container { width: 495px }
+
+    </style>
+
+</head>
+
+<body onload="posneg_chart();month_suspected();ageSex_chart();">
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Analytics Charts</a>
+        </div>
+
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Analytics Dashboard</a>
+                </li>
+                <li>
+                    <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Trend Patterns</a>
+                </li>
+                <li>
+                    <a href="tables.html"><i class="glyphicon glyphicon-stats"></i> Regional Analytics</a>
+                </li>
+                <li>
+                    <a href="final_dash.html"><i class="glyphicon glyphicon-repeat"></i> Cycles of Occurrence</a>
+                </li>
+                <li>
+                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-tasks"></i> Check Specific Trends <i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a href="age.html">Age</a>
+                        </li>
+                        <li>
+                            <a href="gender.html">Gender</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="glyphicon glyphicon-stats"></i> Regional Analytics
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- Morris Charts -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Regional Analytics</h2>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Positive Negative Count</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="chart" style="height: 350px; width: 450px"><svg></svg></div>
+                            <script>
+                                    function posneg_chart() {
+
+                                        var parameters = window.location.search.substring(1).split("=");
+
+                                        var temp = parameters[1];
+
+                                        var xhttp = new XMLHttpRequest();
+                                        xhttp.onreadystatechange = function () {
+                                            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                                                var obj = xhttp.response;
+                                                console.log(obj);
+                                                new Morris.Donut({
+                                                    element: 'chart',
+                                                    data: JSON.parse(obj),
+                                                    xkey: 'key',
+                                                    ykeys: ['value'],
+                                                    parseTime: false,
+                                                    labels: ['value']
+                                                });
+                                            }
+                                        };
+                                        xhttp.open("GET", "http://192.168.1.37:3703/positivenegative/"+temp, true); //ip may change of server..
+                                        xhttp.send();
+                                    }
+
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>Age vs Sex Count</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="age-sex" style="height: 350px; width: 450px"><svg></svg></div>
+                            <script>
+
+                                function ageSex_chart() {
+                                    var parameters = window.location.search.substring(1).split("=");
+
+                                    var temp = parameters[1];
+                                    var xhttp = new XMLHttpRequest();
+                                    xhttp.onreadystatechange = function () {
+                                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                                            var obj = xhttp.response;
+                                            console.log(obj);
+                                            new Morris.Bar({
+                                                element: 'age-sex',
+                                                data: JSON.parse(obj),
+                                                xkey: 'ageGroup',
+                                                ykeys: ['MaleCount','FemaleCount'],
+                                                labels: ['MaleCount','FemaleCount'],
+                                                xLabelAngle:45
+                                            });
+                                        }
+                                    };
+                                    xhttp.open("GET", "http://192.168.1.37:3703/agesex/"+temp, true); //ip may change of server..
+                                    xhttp.send();
+                                }
+
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>Month vs Suspected</h3>
+                    </div>
+                    <div id="line_chart" style="height: 350px; width: 700px"><svg></svg></div>
+                    <script>
+                    function month_suspected() {
+                        var parameters = window.location.search.substring(1).split("=");
+
+                        var temp = parameters[1];
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function () {
+                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                        var obj = xhttp.response;
+                        console.log(obj);
+                            new Morris.Line({
+                            element: 'line_chart',
+                            data: JSON.parse(obj),
+                            xkey: 'key',
+                            ykeys: ['value'],
+                            parseTime: false,
+                            labels: ['value']
+                            });
+                        }
+                    };
+                    xhttp.open("GET", "http://192.168.1.37:3703/monthsuspected/"+temp, true); //ip may change of server..
+                    xhttp.send();
+                    }
+                    </script>
+                </div>
+                    <!--<div class="panel-body" client-left-side style="max-height: 100;overflow-y: scroll;">-->
+
+
+                </div>
+            <!-- /.container-fluid -->
+
+            </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+
+
+    <!-- Bootstrap Core JavaScript -->
+
+
+    <!-- Morris Charts JavaScript -->
+
+    <!--<script src="/public/jsp/morris-data.js"></script>-->
+</div>
+
+</body>
+
+</html>

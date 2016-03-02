@@ -1,0 +1,13 @@
+<html>
+<head>
+<body>
+    <form action="/login" method="get">
+            <label>table</label>
+            <input type="text" name="email">
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+</head>
+</html>
+

@@ -1,0 +1,11 @@
+var express = require("express");
+var app = express();
+var port = 3700;
+ 
+app.get("/", function(req, res){
+	console.log(req.url)
+    res.send({'name' : req.url.split('?')[1].split('&')[0].split('=')[1]});
+});
+ 
+app.listen(port);
+console.log("Listening on port " + port);

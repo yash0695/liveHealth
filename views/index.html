@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Analytics</title>
+
+    <!--maps-->
+    <link href="/public/css/bootstrap.css" rel="stylesheet" media="screen">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>
+
+    <style type="text/css">
+        /* Set a size for our map container, the Google Map will take up 100% of this container */
+        #map {
+        width: 1236px;
+        height: 500px;
+        }
+    </style>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!--NVD3 charts-->
+    <script src="/public/jsp/d3.min.js"></script>
+    <script src="/public/jsp/nv.d3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/css/nv.d3.min.css">
+
+    <!-- Morris Charts CSS -->
+    <link href="/public/css/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/public/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Analytics</a>
+            </div>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Analytics Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Trend Patterns</a>
+                    </li>
+                    <li>
+                        <a href="final_dash.html"><i class="glyphicon glyphicon-stats"></i> Regional Analytics</a>
+                    </li>
+                    <li>
+                        <a href="final_dash.html"><i class="glyphicon glyphicon-repeat"></i> Cycles of Occurrence</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-tasks"></i> Check Specific Trends <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Age</a>
+                            </li>
+                            <li>
+                                <a href="#">Gender</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Analytics <small>Statistics Overview</small>
+                        </h1>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="fa fa-info-circle"></i>  <strong>Worried? Positive?</strong> Confirm using.. <a href="http://www.who.int/mediacentre/factsheets/fs117/en/" class="alert-link">WHO Dengue Statistics</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <!--<h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>Location on Google Maps</h3>-->
+                        </div>
+                        <!--<div class="panel-body" client-left-side style="max-height: 100;overflow-y: scroll;">-->
+                        <div id="map"></div>
+                        <script>
+                            google.maps.event.addDomListener(window, 'load', init);
+
+                            function init(){
+                                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+                                var mapOptions = {
+                                    zoom: 14,
+                                    center: new google.maps.LatLng(18.5304, 73.8765), // Jehangir
+                                    center: new google.maps.LatLng(18.529677,  73.85312299999998), // Sancheti
+                                    styles: [{"featureType":"administrative","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"administrative.country","elementType":"geometry","stylers":[{"color":"#3b2b20"},{"weight":"1"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"on"},{"weight":"1.50"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"weight":"0.5"}]},{"featureType":"administrative.locality","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text","stylers":[{"visibility":"on"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":"-100"},{"lightness":"35"},{"gamma":"1.08"},{"weight":"1.00"}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#dedede"},{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry.fill","stylers":[{"color":"#8897a2"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#136d1e"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#3b2b20"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#3b2b20"},{"visibility":"on"},{"weight":"1.00"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels.text.stroke","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels.icon","stylers":[{"saturation":"-100"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.fill","stylers":[{"color":"#4cb2e6"},{"weight":"2.00"},{"visibility":"on"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#4cb2e6"},{"weight":"1.00"}]},{"featureType":"road.highway.controlled_access","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"road.highway.controlled_access","elementType":"labels.icon","stylers":[{"visibility":"simplified"},{"gamma":"0.78"},{"lightness":"-0"},{"saturation":"-100"}]},{"featureType":"transit.line","elementType":"geometry.fill","stylers":[{"color":"#adabab"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#004db1"}]},{"featureType":"water","elementType":"geometry.stroke","stylers":[{"gamma":"0.98"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"gamma":"1.00"},{"visibility":"on"},{"color":"#000289"}]}]                };
+
+                                // Get the HTML DOM element that will contain your map
+                                // We are using a div with id="map" seen below in the <body>
+                                var mapElement = document.getElementById('map');
+
+<!--for returning values-->
+                                var geocoder;
+                                        function initialize() {
+                                          geocoder = new google.maps.Geocoder();
+                                          var latlng = new google.maps.LatLng(40.730885,-73.997383);
+                                          codeLatLng(function(addr){
+                                            alert(addr);
+                                          });
+                                        }
+
+                                        function codeLatLng(callback) {
+                                          var latlng = new google.maps.LatLng(40.730885,-73.997383);
+                                          if (geocoder) {
+                                            geocoder.geocode({'latLng': latlng}, function(results, status) {
+                                              if (status == google.maps.GeocoderStatus.OK) {
+                                                if (results[1]) {
+                                                  callback(results[1].formatted_address);
+                                                } else {
+                                                  alert("No results found");
+                                                }
+                                              } else {
+                                                alert("Geocoder failed due to: " + status);
+                                              }
+                                            });
+                                          }
+                                        }
+
+                                // Create the Google Map using our element and options defined above
+                                var map = new google.maps.Map(mapElement, mapOptions);
+
+                                <!--o-->
+
+
+
+                                <!--o-->
+
+                                // Let's also add a marker while we're at it
+                                var marker_Aundh = new google.maps.Marker({
+                                    position: new google.maps.LatLng(18.5224, 73.8486),
+                                    map: map,
+                                    title: 'Aundh',
+                                    animation:google.maps.Animation.BOUNCE
+
+
+                                });
+                                var marker_Baner = new google.maps.Marker({
+                                    position: new google.maps.LatLng(18.56,73.7903),
+                                    map: map,
+                                    title: 'Baner',
+                                    animation:google.maps.Animation.BOUNCE
+
+                                });
+                                var marker_Wagholi = new google.maps.Marker({
+                                    position: new google.maps.LatLng(18.6532,73.9088),
+                                    map: map,
+                                    title: 'Wagholi',
+                                    animation:google.maps.Animation.BOUNCE
+
+                                });
+                                var marker_Gultekdi = new google.maps.Marker({
+                                    position: new google.maps.LatLng(18.48765,73.86836),
+                                    map: map,
+                                    title: 'Gultekdi',
+                                    animation:google.maps.Animation.BOUNCE
+
+                                });
+                                var marker_Parvati = new google.maps.Marker({
+                                    position: new google.maps.LatLng(18.4972,73.8467),
+                                    map: map,
+                                    title: 'Parvati',
+                                    animation:google.maps.Animation.BOUNCE
+
+                                });
+                                var marker_ShaniwarPeth = new google.maps.Marker({
+                                    position: new google.maps.LatLng(18.5209,73.8515),
+                                    map: map,
+                                    title: 'ShaniwarPeth',
+                                    animation:google.maps.Animation.BOUNCE
+
+                                });
+                                var marker_Hadapsar = new google.maps.Marker({
+                                    position: new google.maps.LatLng(18.4967,73.9417),
+                                    map: map,
+                                    title: 'Hadapsar',
+                                    animation:google.maps.Animation.BOUNCE
+
+                                });
+                                var marker_Bhosari = new google.maps.Marker({
+                                    position: new google.maps.LatLng(18.5604,73.8360),
+                                    map: map,
+                                    title: 'Bhosari',
+                                    animation:google.maps.Animation.BOUNCE
+
+                                });
+                                google.maps.event.addListener(marker_Aundh, 'click', function () {
+
+                                    window.location="/views/final_dash.html?area=Aundh";
+
+                                });
+                                google.maps.event.addListener(marker_Baner, 'click', function () {
+                                    window.location="/views/final_dash.html?area=Baner";
+                                });
+                                google.maps.event.addListener(marker_Wagholi, 'click', function () {
+                                    window.location="/views/final_dash.html?area=Wagholi";
+                                });
+                                google.maps.event.addListener(marker_Hadapsar, 'click', function () {
+                                    window.location="/views/final_dash.html?area=Hadapsar";
+                                });
+
+                            }
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+                <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Regional Distribution of the cases</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="chart" style="height: 350px; width: 1050px"><svg></svg></div>
+                            <!--var chart = nv.models.multiBarChart().stacked(false).showControls(false);-->
+                            <!--var chart = nv.models.multiBarHorizontalChart();-->
+                            <script>
+                                d3.select('#chart svg').datum([{
+                                key: "2014",
+                                    color: "#40664D",
+                                    values:
+                                        [{ x: 'Parvati', y: 15 },
+                                         { x: 'Aundh', y: 8 },
+                                         { x: 'Hadapsar', y : 1 }]},
+                                         {
+                                key: "2015",
+                                    color: "#0BB5FF",
+                                    values:
+                                        [{ x: 'Parvati', y: 5 },
+                                         { x: 'Aundh', y: 18 },
+                                         { x: 'Hadapsar', y : 11 }]
+                                         }]).transition().duration(5000).call(chart);
+                                </script>
+                        </div>
+                    </div>
+                </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.container-fluid -->
+
+
+                <!-- /.row -->
+
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+</body>
+
+</html>

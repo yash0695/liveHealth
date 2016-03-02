@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Morris.js Line</title>
+</head>
+
+
+
+
+
+<body onLoad="drawChart()">
+<script src="../public/jsp/raphael-min.js"></script>
+<script src="../public/jsp/jquery-1.8.2.min.js"></script>
+<script src="../public/jsp/morris.min.js"></script>
+<div id="blah_1"></div>
+<script>
+    var obj=[
+        { "year": "2008", "value": "20" },
+        { "year": "2009", "value": "10" },
+        { "year": "2010", "value": "5" },
+        { "year": "2011", "value": "5" },
+        { "year": "2012", "value": "20" }]
+    function drawChart(){
+            new Morris.Bar({
+                element:'blah_1',
+                data:obj,
+                xkey:'year',
+                ykeys:['value'],
+                labels:['VALUE']
+            });
+
+    }
+</script>
+</body>
+</html>
