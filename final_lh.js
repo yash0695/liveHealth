@@ -3,18 +3,18 @@ var app =module.exports=express();
 var fs=require("fs");
 var port = 3703;
 var crossfilter=require("crossfilter");
-var jsonfile=require("jsonfile");
-var file1="jsondata.json";
-var file_output1="output.json";
-var mysql      = require('mysql');
+//var jsonfile=require("jsonfile");
+//var file1="jsondata.json";
+//var file_output1="output.json";
+//var mysql      = require('mysql');
 var requestify = require('requestify');
 var theUrl = 'https://livehealth.in/testValuesPlot/?testName=dengue&token=a9e818c8-fdef-11e3-8a65-00163e98c552'
-var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'yashgupta',
-    database : 'live'
-});
+//var connection = mysql.createConnection({
+//    host     : 'localhost',
+//    user     : 'root',
+//    password : 'yashgupta',
+//    database : 'live'
+//});
 app.use("/public",express.static(__dirname +'/public'));
 app.use("/views",express.static(__dirname +'/views'));
 app.set('view engine', 'ejs');
