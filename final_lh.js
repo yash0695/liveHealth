@@ -1,6 +1,6 @@
 var express = require("express");
 var app =module.exports=express();
-var fs=require("fs");
+//var fs=require("fs");
 var port = 3703;
 var crossfilter=require("crossfilter");
 //var jsonfile=require("jsonfile");
@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 app.locals.pagetitle='Live Health - ';
 
-app.get('/main',function(req,res){
+app.get('/',function(req,res){
     console.log("in main");
     res.render('index.html');
 });
@@ -205,20 +205,9 @@ app.get("/agesex/:area",function(req,res)
 
         //final_filter();
 
-
-
     });
 
 });
-
-
-
-
-
-
-
-
-
 
 
 app.listen(port);
