@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+
+        <head>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="">
+            <meta name="author" content="">
+
+            <title>Prevention</title>
+
+            <!-- Bootstrap Core CSS -->
+            <link href="css/bootstrap.min.css" rel="stylesheet">
+
+            <!-- Custom CSS -->
+            <link href="css/heroic-features.css" rel="stylesheet">
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css">
+
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
+
+        </head>
+
+<body background="./gr2.jpg">
+
+
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron hero-spacer">
+        <h1>Causes</h1>
+        <p>The survival of adult female Aedes mosquitoes is a critical component of their ability to transmit pathogens such as dengue viruses. One of the principal determinants of Aedes survival is temperature, which has been associated with seasonal changes in Aedes populations and limits their geographical distribution.</p>
+        <p><a class="btn btn-primary btn-large">Check Details</a>
+        </p>
+    </header>
+
+    <hr>
+
+    <!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Preventive Measures</h3>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Page Features -->
+    <div class="row text-center">
+
+        <div class="col-md-6 col-sm-6 hero-feature">
+            <div class="thumbnail">
+                <!--<img src="http://placehold.it/800x500" alt="">-->
+                <div class="caption">
+                    <h3>Temperature Patterns</h3>
+                    <div id="chart" style="height: 325px; width: 500px"><svg></svg></div>
+                    <script>
+                            var chart = nv.models.multiBarChart().stacked(false).showControls(false);
+
+    <!--var chart = nv.models.multiBarHorizontalChart();-->
+d3.select('#chart svg').datum([
+  {
+    key: "Average",
+    color: "#40664D",
+    values:
+    [
+      { "x": "Jan", "y" : "20.5" },
+      { "x": "Feb", "y" : "22.0" },
+      { "x": "Mar", "y" : "25.6" },
+      { "x": "Apr", "y" : "28.8" },
+      { "x": "May", "y" : "29.7" },
+      { "x": "Jun", "y" : "27.4" },
+      { "x": "Jul", "y" : "25.3" },
+      { "x": "Aug", "y" : "24.5" },
+      { "x": "Sep", "y" : "25.1" },
+      { "x": "Oct", "y" : "25" },
+      { "x": "Nov", "y" : "22.3" },
+      { "x": "Dec", "y" : "20.2" },
+    ]
+  },
+  {
+    key: "Highest",
+    color: "#5EDA9E",
+    values:
+    [
+      { "x": "Jan", "y" : "29.9" },
+      { "x": "Feb", "y" : "31.9" },
+      { "x": "Mar", "y" : "35.4" },
+      { "x": "Apr", "y" : "37.7" },
+      { "x": "May", "y" : "36.9" },
+      { "x": "Jun", "y" : "31.7" },
+      { "x": "Jul", "y" : "28.4" },
+      { "x": "Aug", "y" : "27.4" },
+      { "x": "Sep", "y" : "29.4" },
+      { "x": "Oct", "y" : "31.4"},
+      { "x": "Nov", "y" : "30.1" },
+      { "x": "Dec", "y" : "28.9" },
+    ]
+  },
+  {
+    key: "Lowest",
+    color: "#00C5CD",
+    values:
+    [
+      { "x": "Jan", "y" : "11" },
+      { "x": "Feb", "y" : "12.1" },
+      { "x": "Mar", "y" : "15.8" },
+      { "x": "Apr", "y" : "19.9" },
+      { "x": "May", "y" : "22.4" },
+      { "x": "Jun", "y" : "22.9" },
+      { "x": "Jul", "y" : "22.2" },
+      { "x": "Aug", "y" : "21.6" },
+      { "x": "Sep", "y" : "20.8" },
+      { "x": "Oct", "y" : "18.5" },
+      { "x": "Nov", "y" : "14.4" },
+      { "x": "Dec", "y" : "11.5" },
+    ]
+  }
+]).transition().duration(3000).call(chart);
+d3.selectAll(".nv-bar").on("click", function () {
+    var chart = nv.models.multiBarChart();
+    <!--var chart = nv.models.multiBarHorizontalChart();-->
+d3.select('#chart svg').datum([
+  {
+    key: "Average",
+    color: "#40664D",
+    values:
+    [
+      { "x": "Jan", "y" : "20.5" },
+      { "x": "Feb", "y" : "22.0" },
+      { "x": "Mar", "y" : "25.6" },
+      { "x": "Apr", "y" : "28.8" },
+      { "x": "May", "y" : "29.7" },
+      { "x": "Jun", "y" : "27.4" },
+      { "x": "Jul", "y" : "25.3" },
+      { "x": "Aug", "y" : "24.5" },
+      { "x": "Sep", "y" : "25.1" },
+      { "x": "Oct", "y" : "25" },
+      { "x": "Nov", "y" : "22.3" },
+      { "x": "Dec", "y" : "20.2" },
+    ]
+  },
+  {
+    key: "Highest",
+    color: "#5EDA9E",
+    values:
+    [
+      { "x": "Jan", "y" : "29.9" },
+      { "x": "Feb", "y" : "31.9" },
+      { "x": "Mar", "y" : "35.4" },
+      { "x": "Apr", "y" : "37.7" },
+      { "x": "May", "y" : "36.9" },
+      { "x": "Jun", "y" : "31.7" },
+      { "x": "Jul", "y" : "28.4" },
+      { "x": "Aug", "y" : "27.4" },
+      { "x": "Sep", "y" : "29.4" },
+      { "x": "Oct", "y" : "31.4"},
+      { "x": "Nov", "y" : "30.1" },
+      { "x": "Dec", "y" : "28.9" },
+    ]
+  }
+]).transition().duration(3000).call(chart);
+});
+</script>
+                    <p>
+                        <a href="olo.html" class="btn btn-primary">Check Stats</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 hero-feature">
+            <div class="thumbnail">
+                <!--<img src="http://placehold.it/800x500" alt="">-->
+                <div class="caption">
+                    <h3>Effects of Temperature</h3>
+                    <p>The effect of temperature on the ability of Aedes aegypti to transmit dengue (DEN) 2 virus to rhesus monkeys was assessed as a possible explanation for the seasonal variation in the incidence of dengue hemorrhagic fever in Bangkok, Thailand. In two laboratory experiments, a Bangkok strain of Ae. aegypti was allowed to feed upon viremic monkeys infected with DEN-2 virus. Blood-engorged mosquitoes were separated into two groups and retained at constant temperatures. Virus infection and transmission rates were determined for Ae. aegypti at intervals ranging from 4 to 7 days during a 25-day incubation period. Results of the first experiment for mosquitoes infected with a low dose of DEN-2 virus and maintained at 20, 24, 26, and 30 degrees C, indicated that the infection rate ranged from 25% to 75% depending on the incubation period. However, DEN-2 virus was transmitted to monkeys only by Ae. aegypti retained at 30 degrees C for 25 days. In the second experiment, the infection rate for Ae. aegypti that ingested a higher viral dose, and incubated at 26, 30, 32, and 35 degrees C ranged from 67% to 95%. DEN-2 virus was transmitted to monkeys only by mosquitoes maintained at greater than or equal to 30 degrees C. The extrinsic incubation period was 12 days for mosquitoes at 30 degrees C, and was reduced to 7 days for mosquitoes incubated at 32 degrees C and 35 degrees C.
+                    </p>
+                    <p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>LiveHealth</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
