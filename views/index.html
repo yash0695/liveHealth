@@ -12,31 +12,35 @@
     <title>Analytics</title>
 
     <!--maps-->
+    <!-- jQuery -->
     <link href="/public/css/bootstrap.css" rel="stylesheet" media="screen">
+    <script src="/public/jsp/jquery.js"></script>
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>
 
     <style type="text/css">
         /* Set a size for our map container, the Google Map will take up 100% of this container */
         #map {
-        width: 1236px;
+        width: 1215px;
         height: 500px;
         }
     </style>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="/public/css/sb-admin.css" rel="stylesheet">
 
-    <!--NVD3 charts-->
-    <script src="/public/jsp/d3.min.js"></script>
-    <script src="/public/jsp/nv.d3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/public/css/nv.d3.min.css">
+    <!--&lt;!&ndash;NVD3 charts&ndash;&gt;-->
+    <!--<script src="/public/jsp/d3.min.js"></script>-->
+    <!--<script src="/public/jsp/nv.d3.min.js"></script>-->
+    <!--<link rel="stylesheet" type="text/css" href="/public/css/nv.d3.min.css">-->
 
-    <!-- Morris Charts CSS -->
-    <link href="/public/css/morris.css" rel="stylesheet">
+    <!--&lt;!&ndash; Morris Charts CSS &ndash;&gt;-->
+    <!--<link href="/public/css/morris.css" rel="stylesheet">-->
 
     <!-- Custom Fonts -->
     <link href="/public/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -51,38 +55,57 @@
 
 <body>
 
-    <div id="wrapper">
+    <!--<div id="wrapper">-->
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Analytics</a>
-            </div>
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-tasks"></i> Check Specific Trends <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="/views/weather.html">Weather Based Analytics</a>
-                            </li>
-                            <li>
-                                <a href="/views/prevention.html">Information</a>
-                            </li>
+         <!--Navigation-->
+        <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+            <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+            <!--<div class="navbar-header">-->
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">-->
+                    <!--<span class="sr-only">Toggle navigation</span>-->
+                    <!--<span class="icon-bar"></span>-->
+                    <!--<span class="icon-bar"></span>-->
+                    <!--<span class="icon-bar"></span>-->
+                <!--</button>-->
+                <!--<a class="navbar-brand" href="index.html">Analytics</a>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; Sidebar Menu Items - These collapse to the responsive navigation menu on small screens &ndash;&gt;-->
+            <!--<div class="collapse navbar-collapse navbar-ex1-collapse">-->
+                <!--<ul class="nav navbar-nav top-nav">-->
+                    <!--<li>-->
+                        <!--<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="glyphicon glyphicon-tasks"></i> Check Specific Trends <i class="fa fa-fw fa-caret-down"></i></a>-->
+                        <!--<ul id="demo" class="collapse">-->
+                            <!--<li>-->
+                                <!--<a href="/views/weather.html">Weather Based Analytics</a>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a href="/views/prevention.html">Information</a>-->
+                            <!--</li>-->
 
+                        <!--</ul>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+        <!--</nav>-->
+
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Analytics</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"></i> Check Specific Trends <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/views/weather.html">Weather Based Analytics</a></li>
+                            <li><a href="/views/prevention.html">Information</a></li>
                         </ul>
                     </li>
+                    <!--<li><a href="#">Page 2</a></li>-->
+                    <!--<li><a href="#">Page 3</a></li>-->
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </nav>
 
         <div id="page-wrapper">
@@ -174,7 +197,7 @@
 
 
                                 });
-                                var marker_Baner = new google.maps.Marker({ginal
+                                var marker_Baner = new google.maps.Marker({
                                     position: new google.maps.LatLng(18.56,73.7903),
                                     map: map,
                                     title: 'Baner',
@@ -245,39 +268,38 @@
                 </div>
             </div>
                 <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Regional Distribution of the cases</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="chart" style="height: 350px; width: 1050px"><svg></svg></div>
-                            <!--var chart = nv.models.multiBarChart().stacked(false).showControls(false);-->
-                            <!--var chart = nv.models.multiBarHorizontalChart();-->
-                            <script>
-                                d3.select('#chart svg').datum([{
-                                key: "2014",
-                                    color: "#40664D",
-                                    values:
-                                        [{ x: 'Parvati', y: 15 },
-                                         { x: 'Aundh', y: 8 },
-                                         { x: 'Hadapsar', y : 1 }]},
-                                         {
-                                key: "2015",
-                                    color: "#0BB5FF",
-                                    values:
-                                        [{ x: 'Parvati', y: 5 },
-                                         { x: 'Aundh', y: 18 },
-                                         { x: 'Hadapsar', y : 11 }]
-                                         }]).transition().duration(5000).call(chart);
-                                </script>
-                        </div>
-                    </div>
-                </div>
+            <!--<div class="row">-->
+                <!--<div class="col-lg-12">-->
+                    <!--<div class="panel panel-yellow">-->
+                        <!--<div class="panel-heading">-->
+                        <!--</div>-->
+                        <!--<div class="panel-body">-->
+                            <!--<div id="chart" style="height: 350px; width: 1050px"><svg></svg></div>-->
+                            <!--&lt;!&ndash;var chart = nv.models.multiBarChart().stacked(false).showControls(false);&ndash;&gt;-->
+                            <!--&lt;!&ndash;var chart = nv.models.multiBarHorizontalChart();&ndash;&gt;-->
+                            <!--<script>-->
+                                <!--d3.select('#chart svg').datum([{-->
+                                <!--key: "2014",-->
+                                    <!--color: "#40664D",-->
+                                    <!--values:-->
+                                        <!--[{ x: 'Parvati', y: 15 },-->
+                                         <!--{ x: 'Aundh', y: 8 },-->
+                                         <!--{ x: 'Hadapsar', y : 1 }]},-->
+                                         <!--{-->
+                                <!--key: "2015",-->
+                                    <!--color: "#0BB5FF",-->
+                                    <!--values:-->
+                                        <!--[{ x: 'Parvati', y: 5 },-->
+                                         <!--{ x: 'Aundh', y: 18 },-->
+                                         <!--{ x: 'Hadapsar', y : 11 }]-->
+                                         <!--}]).transition().duration(5000).call(chart);-->
+                                <!--</script>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             <!-- /.row -->
 
-        </div>
+        <!--</div>-->
         <!-- /.container-fluid -->
 
 
@@ -288,19 +310,17 @@
         </div>
         <!-- /#page-wrapper -->
 
-    </div>
+    <!--</div>-->
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/public/jsp/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+    <!--&lt;!&ndash; Morris Charts JavaScript &ndash;&gt;-->
+    <!--<script src="js/plugins/morris/raphael.min.js"></script>-->
+    <!--<script src="js/plugins/morris/morris.min.js"></script>-->
+    <!--<script src="js/plugins/morris/morris-data.js"></script>-->
 
 </body>
 
